@@ -1,4 +1,5 @@
 import React from 'react'
+import { useState, useEffect } from 'react'
 import { fetchRoutines } from '../util'
 
 const Routines = () => {
@@ -10,7 +11,7 @@ const Routines = () => {
     }, [])
     return <>
     <div>Welcome to the Routines Page.</div>
-    { routines.map((routines) => {
+    { routines.map((routine) => {
         return <div key={routine.id}>
             <div>Name: {routine.id}</div>
             <div>Description: {routine.description}</div>

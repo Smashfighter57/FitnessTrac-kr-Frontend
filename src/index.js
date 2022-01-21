@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import "./Main.css"
 import ReactDOM from 'react-dom';
 import { Routes, Route, Link, NavLink, BrowserRouter as Router, useNavigate, useParams } from 'react-router-dom';
 import { 
@@ -31,10 +32,11 @@ useEffect(async () => {
 })
 
 return<>
-<div>Hello World</div>
+<div>Fitness Tracker</div>
+    <Header />
         <hr/>
         <Routes>
-            <Route path = '/home' exact element ={
+            <Route path = '/' exact element ={
                 <>
                 <h1>Welcome to Fitness Tracker.</h1>
                 <h3>Please make sure to sign in or register as a user first before using our website.</h3>
