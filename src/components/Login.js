@@ -8,7 +8,7 @@ const Login = ({setToken}) => {
     const login = async (event) => {
         try {
             event.preventDefault();
-            const response = await fetch('http://strangers-things.herokuapp.com/api/2108-CSE-RM-WEB-PT/guests/login', {
+            const response = await fetch('http://fitnesstrac-kr.herokuapp.com/api/guests/login', {
               method: "POST",
               headers: {
                 'Content-Type': 'application/json'

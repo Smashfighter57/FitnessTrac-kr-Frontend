@@ -1,29 +1,23 @@
 import React from 'react'
+import { useState, useEffect } from 'react'
+import { fetchRoutines } from '../util'
 
 const Routines = () => {
-    return <div>Welcome to the Routines Page.</div>
-}
+    const [routines, setRoutines] = useState([])
 
-// module.exports = function (app) {
-//     app.get("api/routines", (req, res) => {
-//         db.routines.find({})
-//             .poplate("routines")
-//             .then(dbRoutine => {
-//                 res.json(dbRoutine)
-//             })
-//             .catch(err => {
-//                 res.json(err);
-//             })
-//     });
-    
-//     app.post("/api/routines", (req, res) => {
-//         db.Routines.create({ day: Date.now})
-//         .then(routine => {
-//             res.json(routine);
-//         }).catch(err => {
-//             res.json(err);
-//         })
-//     })
-// }
+    useEffect(async () => {
+        const routines = await fetchRoutines();
+        setRoutines(routines);
+    }, [])
+    return <>
+    <div>Welcome to the Routines Page.</div>
+    { routines.map((routine) => {
+        return <div key={routine.id}>
+            <div>Name: {routine.id}</div>
+            <div>Description: {routine.description}</div>
+        </div>
+    }) }
+    </> 
+}
 
 export default Routines;

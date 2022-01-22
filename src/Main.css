@@ -1,5 +1,5 @@
 html {
-    background-color: aqua;
+    background-color: gray;
 }
 
 nav {
@@ -22,7 +22,8 @@ nav.main_nav a {
     text-align: center;
     padding: 10px;
 }
-.error{
+
+.error {
     color: red;
 }
 
@@ -32,5 +33,5 @@ form {
 }
 
 h1{
-    font-style:oblique
+    font-style:oblique;
 }

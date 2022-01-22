@@ -1,11 +1,29 @@
-const BASE_URL = 'http://localhost:4000/api/2108-CSE-RM-WEB-PT'
+const BASE_URL = 'https://fitnesstrac-kr.herokuapp.com/api/'
 
-export const fetchPosts = async () => {
+export const fetchActivities = async () => {
     try {
-        const response = await fetch('http://localhost:4000/api/2108-CSE-RM-WEB-PT/posts')
+         const response = await fetch(`${BASE_URL}/activities`, {
+             headers: {
+                 'Content-Type': 'application/json', 
+             },
+         })
+         const result = await response.json()
+         return result;   
+    }catch (error) {
+        console.log(error)
+    }
+}
+
+export const fetchRoutines = async () => {
+    try {
+        const response = await fetch(`${BASE_URL}/routines`, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
         const result = await response.json()
-        return result.data.posts
-    }catch(error) {
+        return result;
+    } catch (error) {
         console.log(error)
     }
 }
@@ -16,8 +34,8 @@ export const fetchUserData = async (token) => {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
         }
-        const response = await fetch('http://localhost:4000/api/2108-CSE-RM-WEB-PT/guests/me', {
-            headers: user_data_headers
+        const response = await fetch('http://fitnesstrac-kr.herokuapp.com/guests/me', {
+            headers: user_data_headers  
         })
         const result = await response.json()
         return result
@@ -26,31 +44,52 @@ export const fetchUserData = async (token) => {
     }
 }
 
-export const addPost = async (token, post) => {
+export const AddRoutines = async (token, routine) => {
     try {
-        const response = await fetch('http://localhost:4000/api/2108-CSE-RM-WEB-PT/posts', {
+        const response = await fetch('http://fitnesstrac-kr.herokuapp.com/api/routines', {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify({
-                post: post
+                post:routine
             })
         })
-        const result= await response.json
+        const result = await response.json
         console.log(result)
-    }catch (error){
+    } catch (error) {
         console.log(error)
     }
 }
 
-export const deletePost = async(token, post_id) => {
+export const addActivities = async (token, activity) => {
     try {
-        const response = await fetch(`http://localhost:4000/api/2108-CSE-RM-WEB-PT/posts/${post_id}`, {
+        const response = await fetch('http://fitnesstrac-kr.herokuapp.com/api/activities', {
+            method: "POST",
+            header: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                message: {
+                    content: activity
+                }
+            })
+        })
+        const result = await response.json()
+        return result
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const deleteActivities = async (token, activity) => {
+    try {
+        const response = await fetch(`http://fitnesstrac-kr.herokuapp.com/api/activities`, {
             method: "DELETE",
             headers: {
-                'Content-Type': 'application/json',
+                'Content-type': 'application/json',
                 'Authorization': `Bearer ${token}`
             }
         })
@@ -61,23 +100,19 @@ export const deletePost = async(token, post_id) => {
     }
 }
 
-export const addMessage = async (token, post_id, comment) => {
+export const deleteRoutines = async(token, routine) => {
     try {
-        const response = await fetch(`http://localhost:4000/api/2108-CSE-RM-WEB-PT/posts/${post_id}/comments`, {
-            method: "POST",
+        const response = await fetch(`http://fitnesstrac-kr.herokuapp.com/api/routines`, {
+            method: "DELETE",
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
-            },
-            body: JSON.stringify({
-                message: {
-                    content: message
-                }
-            })
+            }
         })
         const result = await response.json()
-        return result
-    } catch (error) {
+        console.log(result) 
+    } catch(error) {
         console.log(error)
     }
 }
+

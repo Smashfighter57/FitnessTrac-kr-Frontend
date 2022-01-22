@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 
-const AccountForm = ({setToken, action, setIsLoggedIn, isLoggedIn}) => {
+const AccountForm = ({setToken, setIsLoggedIn, isLoggedIn}) => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [showCredentialsError, setShowCredentialsError] = useState(false)
     const [accountError, setAccountError] = useState('')
     const [currentUser, setCurrentUser] = useState({})
     const navigate = useNavigate()
+    const {action} = useParams()
 
     useEffect(() => {
         if (isLoggedIn) navigate('/home')
@@ -21,7 +22,7 @@ const AccountForm = ({setToken, action, setIsLoggedIn, isLoggedIn}) => {
             }
             console.log(user_data_headers)
 
-            const response = await fetch(`https://strangers-things.herokuapp.com/api/2108-CSE-RM-WEB-PT/guests/me`, {
+            const response = await fetch(`http://fitnesstrac-kr.herokuapp.com/api/guests/me`, {
                 headers: user_data_headers
             })
             const result = await response.json()
@@ -35,7 +36,7 @@ const AccountForm = ({setToken, action, setIsLoggedIn, isLoggedIn}) => {
     const submitAccountInfo = async (event) => {
         try{
             event.preventDefault();
-            const response = await fetch(`https://strangers-things.herokuapp.com/api/2108-CSE-RM-WEB-PT/users/${action}`, {
+            const response = await fetch(`http://fitnesstrac-kr.herokuapp.com/api/users/${action}`, {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'
