@@ -2,7 +2,7 @@ import React from 'react'
 
 const Home = () => (
     <div>
-        "Welcome to Fitness Tracker."
+        <h1>Welcome to Stranger's Things!</h1>
     </div>
 )
 
