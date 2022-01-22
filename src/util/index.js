@@ -1,4 +1,4 @@
-const BASE_URL = 'http://fitnesstrac-kr.herokuapp.com/api/'
+const BASE_URL = 'https://fitnesstrac-kr.herokuapp.com/api/'
 
 export const fetchActivities = async () => {
     try {
@@ -22,7 +22,7 @@ export const fetchRoutines = async () => {
             },
         })
         const result = await response.json()
-        return result
+        return result;
     } catch (error) {
         console.log(error)
     }
